@@ -12,6 +12,7 @@ function App() {
     birthDate:yup.string().required("sua data de nacimento").matches("^[0-9]{2}/([0-9]{2}/[0-9]{2})","cada valor tem que ir separado com um '/'"),
     password:yup.string().required("senha obrigatoria").matches("","sua senha tem que incluir uma letra mayuscula, uma letra minuscula, um numero, e um caracter especial"),
     confPassword:yup.string().required("senha tem que ser igual").matches(),
+    acept:yup.string().required("click the box").matches(true, "tem que dar click na box"),
 
   })
 
@@ -23,8 +24,9 @@ function App() {
     resolver: yupResolver(formShema),
   });
   
-  const onSubmitFunction = (data) => console.log(data);
- console.log(errors) 
+  const onSubmitFunction = (data) =>  {
+    console.log(data);
+  }
   return (
     <div className="container">
       <h3 >formulario</h3>
@@ -43,6 +45,8 @@ function App() {
         {errors.password?.message}
         <input type="password" placeholder="confirmar senha"{...register("confPassword")} />
         {errors.confPassword?.message}
+        <input type="checkbox" {...register("acept")}/><p>aceita os terminos</p>
+        {errors.acept?.message}
         <button type = "submit">Enviar</button>
       </form>
 

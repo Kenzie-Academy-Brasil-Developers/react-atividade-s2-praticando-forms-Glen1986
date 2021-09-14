@@ -27,7 +27,13 @@ body{
 .form>input{
   margin: 0.25rem 0;
   text-align:center;
-
+}
+.form>p{
+  display: flex;
+  flex-direction: column;
+  margin-top: -1.25rem;
+  margin-bottom:0.25rem;
+  margin-left:0.80rem;
 }
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
