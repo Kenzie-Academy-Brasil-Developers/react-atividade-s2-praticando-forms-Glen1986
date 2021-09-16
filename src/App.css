@@ -35,6 +35,9 @@ body{
   margin-bottom:0.25rem;
   margin-left:0.80rem;
 }
+section{
+  margin-top:6rem;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
