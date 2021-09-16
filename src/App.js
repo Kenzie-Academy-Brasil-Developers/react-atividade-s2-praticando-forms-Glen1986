@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useState,useEffect } from 'react';
-import LifeCicle from './components/LifeCycle'
 //import { Switch, Route } from 'react-router-dom';
 
 function App() {
@@ -12,7 +11,6 @@ function App() {
   const [telephone, setTelephone] = useState([]);
   const [country, setCountry] = useState([]);
   const [birthDay, setBirthDay] = useState([]);
- 
   /*
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
@@ -25,8 +23,8 @@ function App() {
     telephone:yup.string().required("telefone obigatorio").matches("^[0-9]{2} ([0-9]{5} [0-9]{4})", "telefone invalido"),
     country:yup.string(),
     birthDate:yup.string().required("sua data de nacimento").matches("^[0-9]{2}/([0-9]{2}/[0-9]{2})","cada valor tem que ir separado com um '/'"),
-    password:yup.string().required("senha obrigatoria").matches("","sua senha tem que incluir uma letra mayuscula, uma letra minuscula, um numero, e um caracter especial"),
-    confPassword:yup.string().required("senha tem que ser igual").matches(),
+    password:yup.string().required("senha obrigatoria").matches("(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$","sua senha tem que incluir uma letra mayuscula, uma letra minuscula, um numero, e um caracter especial"),
+    confPassword:yup.string().required("confimacao obrigatoria").oneOf([yup.ref("password")], "sua confirmacao nao coincide com suasenha ja cadastrada"),
     log:yup.string().required("click the box").matches(true, "tem que dar click na box"),
 
   })
@@ -112,7 +110,7 @@ function App() {
           {errors.telephone?.message}
           <input placeholder="Country" {...register("country")}   />
           {errors.country?.message}
-          <input placeholder="dia mes ano"{...register("birthDate")} />
+          <input placeholder="meu aniversario dia mes ano separado por '/'"{...register("birthDate")} />
           {errors.birthDate?.message}
           <input type="password"placeholder="senha" {...register("password")}/>
           {errors.password?.message}
